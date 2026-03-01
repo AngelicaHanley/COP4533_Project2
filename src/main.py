@@ -28,12 +28,18 @@ def fifo(k,m):
 def lru(k,m):
     cache=OrderedDict()
     misses=0
-
+    #if cache hit, add item to end
     for x in m:
         if x in cache:
             cache.move_to_end(x)
+        #if cache miss, increment misses
         else:
             misses=misses+1
+        #if capcity reached, removes the first item (least recently used)
+            if len(cache)==k:
+                cache.popitem(last=False)
+            #inserts x into end of the cache OrderedDict
+            cache[x]=None
     return misses
 
 def main():
@@ -53,9 +59,13 @@ def main():
     requestStrings=myData[2:2+requestsNum]
     #converting request strings to ints
     m=[int(x) for x in requestStrings]
+
     #fifo ran and print out total misses
     fifoMisses=fifo(k,m)
     print(f"FIFO  : {fifoMisses}")
+    #lru ran and print out total misses
+    lruMisses=lru(k,m)
+    print(f"LRU   : {lruMisses}")
 
 if __name__ == "__main__":
     main()
