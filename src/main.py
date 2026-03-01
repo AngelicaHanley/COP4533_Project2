@@ -1,4 +1,4 @@
-from collections import deque
+from collections import deque, OrderedDict
 
 #fifo function - Evict the item that has been in the cache the longest
 # k = capacity, m = list of requests
@@ -23,6 +23,17 @@ def fifo(k,m):
         #adds new item to cache and marks it as most recently inserted in queue
         cache.add(x)
         myQueue.append(x)
+    return misses
+
+def lru(k,m):
+    cache=OrderedDict()
+    misses=0
+
+    for x in m:
+        if x in cache:
+            cache.move_to_end(x)
+        else:
+            misses=misses+1
     return misses
 
 def main():
