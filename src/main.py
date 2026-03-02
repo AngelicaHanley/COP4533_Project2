@@ -42,10 +42,65 @@ def lru(k,m):
             cache[x]=None
     return misses
 
+
+def optff(k,m):
+    misses = 0
+    cache = []
+    position = 0
+
+    for request in m:
+        #if yes, there's a hit!
+        if request in cache:
+            position += 1
+            continue
+
+        #miss
+        misses += 1
+
+        #k is cache capacity, if less than, we can add, if not, evict
+        if (len(cache) < k):
+            cache.append(request)
+
+        #time to evict --> OPTFF (cuz cache full)
+        else:
+            #item who has the farthest index for its next use
+            farthestIndex = -1
+            #evict this item
+            evictedItem = None
+
+            #current item in cache
+            for item in cache:
+                #we are going to search for this item's position
+                nextPosition = -1
+
+                #search in request list, position+1 to look at the following items after the current item
+                for nextTimeUsed in range(position + 1, len(m)):
+                    if m[nextTimeUsed]==item:
+                        nextPosition = nextTimeUsed
+                        break
+
+                #item never used again so perf candidate to remove
+                if nextPosition == -1:
+                    evictedItem = item
+                    break
+
+                #find the one that has farthest index
+                if nextPosition > farthestIndex:
+                    farthestIndex = nextPosition
+                    evictedItem = item
+
+            #remove farthest-indexed item and then add the request
+            cache.remove(evictedItem)
+            cache.append(request)
+
+        position+= 1
+
+    return misses
+
 def main():
     #opening input file, splitting into individual values
     try:
-        with open("data/example.in","r") as file:
+        with open("../data/example.in","r") as file:
             myData= file.read().strip().split()
     except FileNotFoundError:
         print("File opening error")
@@ -66,6 +121,10 @@ def main():
     #lru ran and print out total misses
     lruMisses=lru(k,m)
     print(f"LRU   : {lruMisses}")
+
+    #optff ran and print our total misses
+    optffMisses=optff(k,m)
+    print(f"OPTFF  : {optffMisses}")
 
 if __name__ == "__main__":
     main()
