@@ -100,7 +100,7 @@ def optff(k,m):
 def main():
     #opening input file, splitting into individual values
     try:
-        with open("../data/example.in","r") as file:
+        with open("data/file3.in","r") as file:
             myData= file.read().strip().split()
     except FileNotFoundError:
         print("File opening error")
