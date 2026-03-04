@@ -21,7 +21,17 @@ Question 1:
 
 
 Question 2:
-- 
+Such a sequence does exist: 8 6 4 2 8 6 4 1 2 8 6 4 1
+k = 3
+m = 13
+
+Miss count: 
+LRU: 13
+FIFO: 13
+OPTFF: 8
+
+LRU evicts the page that was least recently used by looking at the previous accesses in the cache. Therefore, even if that page is needed in the future relatively soon, the page is still removed because LRU is only considering the past pages, rather than also considering upcoming requests. Consequently, it can remove pages that could be reused in the near future, leading to misses that could have been avoided. Likewise, FIFO operates in a similar fashion. Rather than consider future requests before removing pages, it removes the page that has been in the cache for the longest. As a result, it also can remove pages that could be reused in the near future, leading to misses that could have been avoided, just like LRU. Unlike FIFO and LRU, OPTFF views future requests and considers them prior to evicting a page. This algorithm evicts the page whose use is farthest in the future, leading to less cache misses as the pages who are going to be used soon will remain in the cache. 
+
 
 Question 3:
 - 
