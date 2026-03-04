@@ -34,4 +34,10 @@ LRU evicts the page that was least recently used by looking at the previous acce
 
 
 Question 3:
-- 
+Let OPTFF be Belady’s Farthest-in-Future algorithm.
+Let A be any offline algorithm that knows the full request sequence.
+
+Both algorithms have the ability to view the future sequence. When the cache is full and there is a miss, both algorithms need to replace a page in the cache. Let n = the page OPTFF will choose to evict, the farthest in the future that will be needed. Let m = the page that A will choose to evict, a page that will be needed sooner than the page that OPTFF chose since OPTFF uses the one farthest in the future that will be needed. 
+
+Since m will be used in the future sooner than n will be, choosing to evict m cannot be the better option to evict compared to n. This is because A will have a miss sooner than OPTFF would have one with n.Therefore, A will not have fewer misses than OPTFF as it will log misses more frequently due to m’s closer proximity compared to n. A will not result in a decrease in misses, rather this algorithm may increase them. Since OPTFF will have either the same amount of misses or less than, it is the more optimal algorithm with a number of misses no larger than of A, either doing as good or better than A.
+
