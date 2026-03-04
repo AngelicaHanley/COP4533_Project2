@@ -17,7 +17,8 @@ Assumptions:
 - The rest is ( r_1, .., r_m ) = sequence of integer IDs
 
 Question 1:
-- 
+- <img width="567" height="168" alt="Screenshot 2026-03-02 at 4 29 22 PM" src="https://github.com/user-attachments/assets/99438155-fc42-4e1e-9c43-e698a3bea5a5" />
+
 
 Question 2:
 - 
