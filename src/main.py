@@ -124,7 +124,7 @@ def main():
 
     #optff ran and print our total misses
     optffMisses=optff(k,m)
-    print(f"OPTFF  : {optffMisses}")
+    print(f"OPTFF : {optffMisses}")
 
 if __name__ == "__main__":
     main()
