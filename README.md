@@ -9,7 +9,9 @@ Instructions to compile and run the code:
 - Clone the repository
 - Navigate to the project root directory 
 - In src/main.py, set the filename inside open() to the wanted input file
-- Run the program using python3 src/main.py
+- Run the program using python src/main.py
+    - If your system uses "py", run: py src/main.py
+    - If your system uses "python3", run: python3 src/main.py
 
 Assumptions:
 - The first number in the input file is k, cache capacity (k >= 1)
