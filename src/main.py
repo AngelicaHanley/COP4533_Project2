@@ -100,7 +100,7 @@ def optff(k,m):
 def main():
     #opening input file, splitting into individual values
     try:
-        with open("data/file3.in","r") as file:
+        with open("data/example.in","r") as file:
             myData= file.read().strip().split()
     except FileNotFoundError:
         print("File opening error")
@@ -124,7 +124,7 @@ def main():
 
     #optff ran and print our total misses
     optffMisses=optff(k,m)
-    print(f"OPTFF  : {optffMisses}")
+    print(f"OPTFF : {optffMisses}")
 
 if __name__ == "__main__":
     main()
